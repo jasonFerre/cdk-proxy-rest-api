@@ -1,0 +1,39 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.134",
+    "@types/jest": "^29.5.12",
+    "cross-env": "^7.0.3",
+    "esm": "^3.2.25",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.529.1",
+    "@aws-sdk/lib-dynamodb": "^3.529.1",
+    "@middy/core": "^5.2.4",
+    "@middy/http-error-handler": "^5.2.4",
+    "@middy/http-event-normalizer": "^5.2.4",
+    "@middy/http-header-normalizer": "^5.2.4",
+    "@middy/http-json-body-parser": "^5.2.4",
+    "@middy/http-router": "^5.2.4",
+    "@middy/validator": "^5.2.4",
+    "aws-lambda": "^1.0.7",
+    "dynamodb-toolbox": "^0.9.2",
+    "http-status-codes": "^2.3.0",
+    "reflect-metadata": "^0.2.1",
+    "tsyringe": "^4.8.0"
+  }
+}
