@@ -6,10 +6,13 @@ The project follows good practices like Test-Driven Development (TDD) and Domain
 
 ## Important Modules Used
 
-* Tsyring: A lightweight dependency injection container for TypeScript
+* Tsyring: A lightweight dependency injection container for TypeScript.
 * Middy: Middy is a very simple middleware engine that allows you to simplify your AWS Lambda code when using Node.js.
 * DynamoDB-Toolbox:  is a set of tools that makes it easy to work with Amazon DynamoDB and the DocumentClient.
-* AWS-SDK V3: AWS APIs
+* AWS-SDK V3: AWS APIs.
+* NodeJS Function: Lambda runtime for NodeJS with JS/TS.
+* ESBuild: Bundle.
+* Jest: JavaScript testing framework.
 
 ## Project Structure
 

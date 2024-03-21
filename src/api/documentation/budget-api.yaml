@@ -1,0 +1,138 @@
+openapi: '3.0.0'
+info:
+  version: '1.0.0'
+  title: 'Budget API'
+tags:
+  - name: budget
+    description: Operations about budgets
+paths:
+  /budget:
+    get:
+      tags:
+        - 'budget'
+      summary: 'Get paginated budgets'
+      parameters:
+        - name: PageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: LastEvaluatedKey
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBudgets'
+        '400':
+          description: 'Invalid input'
+        '409':
+          description: 'Conditions failed'
+        '500':
+          description: 'Internal server error'
+    post:
+      tags:
+        - 'budget'
+      summary: 'Create a new budget'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Budget'
+      responses:
+        '201':
+          description: 'Successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Budget'
+        '400':
+          description: 'Invalid input'
+        '409':
+          description: 'Conditions failed'
+        '500':
+          description: 'Internal server error'
+  /budget/{id}:
+    get:
+      tags:
+        - 'budget'
+      summary: 'Get a budget by ID'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+      responses:
+        '200':
+          description: 'Successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Budget'
+        '400':
+          description: 'Invalid input'
+        '404':
+          description: 'Budget not found'
+    put:
+      tags:
+        - 'budget'
+      summary: 'Update an existing budget'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Budget'
+      responses:
+        '200':
+          description: 'Successful operation'
+        '400':
+          description: 'Invalid input'
+        '404':
+          description: 'Budget not found'
+        '500':
+          description: 'Internal server error'
+components:
+  schemas:
+    Budget:
+      type: 'object'
+      properties:
+        Name:
+          type: 'string'
+          minLength: 1
+          maxLength: 100
+        OwnerEmail:
+          type: 'string'
+          format: 'email'
+        EndDate:
+          type: 'string'
+          format: 'date-time'
+        AmountValue:
+          type: 'number'
+          minimum: 1
+    PaginatedBudgets:
+      type: 'object'
+      properties:
+        Count:
+          type: 'integer'
+        Items:
+          type: 'array'
+          items:
+            $ref: '#/components/schemas/Budget'
+        LastEvaluatedKey:
+          type: 'string'
