@@ -20,10 +20,10 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm run start
+        run: cd src && npm i
 
       - name: Unit Test
-        run: npm run test
+        run: npm run unit-tests
 
   deploy:
     needs: tests
