@@ -10,7 +10,7 @@
     "test": "cd src && npm run test",
     "cdk": "cdk",
     "start": "npm i && cd src && npm i",
-    "start-prd": "npm install --production && cd src && npm install --production",
+    "start-ci-cd": "npm install && cd src && npm install --production",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "lint-fix": "npm run lint -- --fix",
     "format": "prettier --ignore-path .prettierignore --write \"**/*.+(js|ejs|ts|json|yaml)\"",

@@ -42,7 +42,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm run start-prd
+        run: npm run start-ci-cd
 
       - name: Set environment variables
         run: |
