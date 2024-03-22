@@ -44,7 +44,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: start-prd
+        run: npm run start-prd
 
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@master
