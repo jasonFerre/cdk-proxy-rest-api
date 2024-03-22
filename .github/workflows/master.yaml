@@ -29,9 +29,6 @@ jobs:
     needs: tests
     runs-on: ubuntu-latest
     steps:
-      - name: Configuring Env
-        run: pwd
-
       - name: Check out code
         uses: actions/checkout@v3
         with:
@@ -51,7 +48,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+          aws-region: us-east-1 #${{ env.AWS_DEFAULT_REGION }}
 
       - name: Set environment variables
         run: |
