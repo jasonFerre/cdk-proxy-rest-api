@@ -19,7 +19,7 @@ const environmentName = process.env.ENVIRONMENTNAME ?? 'dev'
 
 console.log(`environmentName: ${environmentName}`)
 export const buildEnvironment = () => {
-  console.log(`aws pipeline region environment ${process.env.AWS_DEFAULT_REGION}`)
+  console.log(`aws pipeline region - account environment ${process.env.AWS_DEFAULT_REGION} - ${process.env.AWS_ACCOUNT}`)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const jsonSettings = Config[`${environmentName}`] as any
 

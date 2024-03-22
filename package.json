@@ -10,11 +10,11 @@
     "test": "cd src && npm run test",
     "cdk": "cdk",
     "start": "npm i && cd src && npm i",
-    "start-prd": "npm i && cd src && npm install --production",
+    "start-prd": "npm install --production && cd src && npm install --production",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "lint-fix": "npm run lint -- --fix",
     "format": "prettier --ignore-path .prettierignore --write \"**/*.+(js|ejs|ts|json|yaml)\"",
-    "api-deploy": "npx cdk synth --profile adm && cdk deploy --all --require-approval never --profile adm ",
+    "api-deploy": "npx cdk synth --profile adm && npx cdk deploy --all --require-approval never --profile adm ",
     "api-destroy": "npx cdk destroy --all --profile adm"
   },
   "devDependencies": {
