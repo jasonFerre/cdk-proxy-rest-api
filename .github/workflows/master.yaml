@@ -6,6 +6,7 @@ on:
 
 jobs:
   tests:
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -43,17 +44,17 @@ jobs:
       - name: Install dependencies
         run: npm run start-prd
 
+      - name: Set environment variables
+        run: |
+          echo "AWS_ACCOUNT=${{ vars.AWS_ACCOUNT }}" >> $GITHUB_ENV
+          echo "AWS_DEFAULT_REGION=${{ vars.AWS_DEFAULT_REGION }}" >> $GITHUB_ENV
+
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@master
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: ${{ vars.AWS_DEFAULT_REGION }}
-
-      - name: Set environment variables
-        run: |
-          echo "AWS_ACCOUNT=${{ vars.AWS_ACCOUNT }}" >> $GITHUB_ENV
-          echo "AWS_DEFAULT_REGION=${{ vars.AWS_DEFAULT_REGION }}" >> $GITHUB_ENV
 
       - name: Deploy API
         run: npm run api-deploy
