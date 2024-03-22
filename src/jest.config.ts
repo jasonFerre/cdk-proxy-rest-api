@@ -17,7 +17,7 @@ const config: Config.InitialOptions = {
     //`${baseDir}/**/*.ts`
     fileDir,
   ],
-  testMatch: [`${baseTestDir}/**/*.test.ts`],
+  testMatch: [`**/*.test.ts`],
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.ts$': '$1',
   },
