@@ -23,7 +23,7 @@ jobs:
         run: cd src && npm i
 
       - name: Unit Test
-        run: npm run unit-tests
+        run: cd src && npm run unit-tests
 
   deploy:
     needs: tests
