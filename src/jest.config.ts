@@ -1,7 +1,7 @@
 import type { Config } from '@jest/types'
 import * as path from 'path'
 
-const rootDir = path.resolve('.')
+const rootDir = path.resolve(__dirname, '.')
 const baseTestDir = `${rootDir}/tests/api/services`
 const fileDir = '<rootDir>/api/services/*.ts'
 

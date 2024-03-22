@@ -23,7 +23,7 @@ jobs:
         run: cd src && npm i
 
       - name: List files in the current directory
-        run: cd src && ls -al
+        run: cd src/tests && ls -al
 
       - name: Unit Test
         run: cd src && npm run unit-tests
