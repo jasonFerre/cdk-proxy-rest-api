@@ -26,7 +26,7 @@ jobs:
         run: cd src && ls -al
 
       - name: Unit Test
-        run: cd src npm run unit-tests
+        run: cd src && npm run unit-tests
 
   deploy:
     needs: tests
