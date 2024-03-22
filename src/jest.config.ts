@@ -1,8 +1,7 @@
 import type { Config } from '@jest/types'
-import * as path from 'path'
 
-const rootDir = path.resolve(__dirname, '.')
-const baseTestDir = `${rootDir}/tests/api/services`
+//const baseDir = '<rootDir>/api/handlers/budget/post'
+const baseTestDir = '<rootDir>/tests/api/services'
 const fileDir = '<rootDir>/api/services/*.ts'
 
 const esModules = ['@middy'].join('|')
@@ -17,7 +16,7 @@ const config: Config.InitialOptions = {
     //`${baseDir}/**/*.ts`
     fileDir,
   ],
-  testMatch: [`**/*.test.ts`],
+  testMatch: [`${baseTestDir}/**/*.test.ts`],
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.ts$': '$1',
   },
