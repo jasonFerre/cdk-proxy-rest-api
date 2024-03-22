@@ -48,12 +48,12 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: ${{ environment.AWS_DEFAULT_REGION }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
       - name: Set environment variables
         run: |
-          echo "AWS_ACCOUNT=${{ environment.AWS_ACCOUNT }}" >> $GITHUB_ENV
-          echo "AWS_DEFAULT_REGION=${{ environment.AWS_DEFAULT_REGION }}" >> $GITHUB_ENV
+          echo "AWS_ACCOUNT=${{ env.AWS_ACCOUNT }}" >> $GITHUB_ENV
+          echo "AWS_DEFAULT_REGION=${{ env.AWS_DEFAULT_REGION }}" >> $GITHUB_ENV
 
       - name: Deploy API
         run: npm run deploy-api
