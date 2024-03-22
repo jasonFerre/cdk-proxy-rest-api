@@ -22,11 +22,11 @@ jobs:
       - name: Install dependencies
         run: cd src && npm i
 
-      - name: List files in current directory
-        run: ls -al
+      - name: List files in the current directory
+        run: cd src && ls -al
 
       - name: Unit Test
-        run: npm run unit-tests
+        run: cd src npm run unit-tests
 
   deploy:
     needs: tests
