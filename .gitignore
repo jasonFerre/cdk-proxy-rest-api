@@ -13,4 +13,4 @@ src/node_modules
 src/coverage
 src/dist
 src/**/*.d.ts
-src/**/*.ts
+src/**/*.js
