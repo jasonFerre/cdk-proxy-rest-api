@@ -5,6 +5,8 @@ info:
 tags:
   - name: budget
     description: Operations about budgets
+servers: #TODO replace by API Gateway URL using CI-CD
+  - url: 'https://x40c0heqxf.execute-api.us-east-1.amazonaws.com/dev'
 paths:
   /budget:
     get:

@@ -1,0 +1,59 @@
+name: Budget-API-Deploy
+
+on:
+  push:
+    branches: ['master']
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm run start
+
+      - name: Unit Test
+        run: npm run test
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: start-prd
+
+      - name: Configure aws credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ${{ environment.AWS_DEFAULT_REGION }}
+
+      - name: Set environment variables
+        run: |
+          echo "AWS_ACCOUNT=${{ environment.AWS_ACCOUNT }}" >> $GITHUB_ENV
+          echo "AWS_DEFAULT_REGION=${{ environment.AWS_DEFAULT_REGION }}" >> $GITHUB_ENV
+
+      - name: Deploy API
+        run: npm run deploy-api
