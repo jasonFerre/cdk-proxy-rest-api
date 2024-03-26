@@ -5,6 +5,7 @@ export async function handler(
   event: APIGatewayTokenAuthorizerEvent,
   context: Context,
 ): Promise<CustomAuthorizerResult> {
+  console.log('validating token for authorizer', event.authorizationToken)
   const token = tokenValidation(event.authorizationToken.split(' ')[1])
 
   if (token === 'allow') {
