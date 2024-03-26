@@ -1,7 +1,10 @@
 import { Context, APIGatewayTokenAuthorizerEvent, CustomAuthorizerResult } from 'aws-lambda'
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
-export async function event(event: APIGatewayTokenAuthorizerEvent, context: Context): Promise<CustomAuthorizerResult> {
+export async function handler(
+  event: APIGatewayTokenAuthorizerEvent,
+  context: Context,
+): Promise<CustomAuthorizerResult> {
   const token = tokenValidation(event.authorizationToken.split(' ')[1])
 
   if (token === 'allow') {
