@@ -20,6 +20,8 @@ The project is structured following the DDD principles. The core business logic 
 
 ## Getting Started
 
+To install all the dependencies locally please run the command: npm run start, after the process ends, you have seted the initial step to contribute with this project.
+
 ## Scripts
 
 This project uses npm scripts for managing workflow. Here is a list of the available commands:
@@ -32,6 +34,27 @@ This project uses npm scripts for managing workflow. Here is a list of the avail
 * `npm run api-destroy`: Destroy all stacks in the AWS CDK app.
 * `npm run test`    perform the jest unit tests for the src code
 
-## How To Deploy
-steps to deploy
+## How To Deploy Localy
+
+Using CDK, you can run the command: npm run api-deploy, this will execute the necessary commands to deploy the application for your AWS environment.
+Note: This step require one aws profile configured in your local environmet.
+
+## How To Deploy CI-CD Github Workflow
+
+1. Create a new GitHub repository.
+2. In the repository settings, navigate to "Secrets" and add the following secrets:
+    AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY
+3. Additionally, define the following repository variables:
+    AWS_ACCOUNT
+    AWS_DEFAULT_REGION
+4. Clone this repository to your local environment and update the GitHub configurations with those of the new repository.
+
+5. Commit and push, please verify if the actions for your project is running.
+
+## API Documentation
+
+1. Copy the API stage URL.
+2. Modify the 'url' variable in the OpenAPI document located at src/api/documentation/budget-api.yaml with the copied URL.
+3. Run the following command:
 

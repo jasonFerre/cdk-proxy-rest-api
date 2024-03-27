@@ -6,7 +6,7 @@ info:
 tags:
   - name: budget
     description: Operations about budgets
-servers:
+servers: #replace for your API Gateway URL
   - url: 'https://x40c0heqxf.execute-api.us-east-1.amazonaws.com/dev'
 paths:
   /budget:

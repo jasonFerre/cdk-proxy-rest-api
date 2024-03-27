@@ -14,8 +14,9 @@
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "lint-fix": "npm run lint -- --fix",
     "format": "prettier --ignore-path .prettierignore --write \"**/*.+(js|ejs|ts|json|yaml)\"",
-    "api-deploy": "npx cdk synth --profile adm && npx cdk deploy --all --require-approval never --profile adm ",
-    "api-destroy": "npx cdk destroy --all --profile adm"
+    "api-deploy": "npx cdk synth && npx cdk deploy --all --require-approval never",
+    "api-destroy": "npx cdk destroy --all",
+    "api-swagger": "cd src && npm run open-swagger"
   },
   "devDependencies": {
     "@types/jest": "^29.5.11",

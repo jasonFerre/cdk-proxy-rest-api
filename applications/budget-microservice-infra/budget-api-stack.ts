@@ -4,6 +4,7 @@ import * as path from 'path'
 import { ISharedStackProps } from '../../lib/base-interfaces/stack-properties-interface'
 import { NodeFunction } from '../../lib/base-constructs/nodejs-function'
 import { RestProxyApi } from '../../lib/base-constructs/proxy-rest-api'
+import { SSM } from '../../lib/base-constructs/ssm'
 
 export class BudgetApiStack extends Stack {
   constructor(scope: Construct, id: string, props: ISharedStackProps) {
@@ -36,9 +37,14 @@ export class BudgetApiStack extends Stack {
 
     budgetTable.grantReadWriteData(proxyHandler)
 
-    RestProxyApi.lambdaProxyAPI(this, {
+    const api = RestProxyApi.lambdaProxyAPI(this, {
       handler: proxyHandler,
       restApiName: 'budget-api',
+    })
+
+    SSM.createParameter(this, {
+      parameterName: '/budget-api/endpoint',
+      stringValue: api.url!,
     })
   }
 }
