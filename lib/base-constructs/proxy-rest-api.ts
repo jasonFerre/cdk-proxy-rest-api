@@ -53,10 +53,10 @@ export abstract class RestProxyApi {
     } as apigw.RestApiProps
 
     const api = new apigw.RestApi(scope, defaultProps.restApiName!, defaultProps)
-    api.root.addCorsPreflight(cors)
     api.root.addProxy({
       anyMethod: true,
       defaultIntegration: new apigw.LambdaIntegration(props.handler!),
+      defaultCorsPreflightOptions: cors,
     })
     return api
   }
