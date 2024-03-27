@@ -6,7 +6,7 @@
   "scripts": {
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest",
     "unit-tests": "cross-env  NODE_OPTIONS=--experimental-vm-modules npx jest --ci",
-    "open-swagger": "http-server -o api/documentation/swagger-ui.html",
+    "open-swagger": "http-server -c-1 --cors -o api/documentation/swagger-ui.html",
     "build": "tsc"
   },
   "keywords": [],

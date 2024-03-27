@@ -26,12 +26,14 @@ export abstract class RestProxyApi {
       identitySource: 'method.request.header.Authorization',
     })
 
+    const cors = {
+      allowOrigins: apigw.Cors.ALL_ORIGINS,
+      allowMethods: apigw.Cors.ALL_METHODS,
+      allowHeaders: apigw.Cors.DEFAULT_HEADERS,
+    }
+
     const defaultProps = {
-      defaultCorsPreflightOptions: {
-        allowOrigins: apigw.Cors.ALL_ORIGINS,
-        allowMethods: apigw.Cors.ALL_METHODS,
-        allowHeaders: apigw.Cors.DEFAULT_HEADERS,
-      },
+      defaultCorsPreflightOptions: cors,
       endpointConfiguration: {
         types: [apigw.EndpointType.EDGE],
       },
@@ -51,6 +53,7 @@ export abstract class RestProxyApi {
     } as apigw.RestApiProps
 
     const api = new apigw.RestApi(scope, defaultProps.restApiName!, defaultProps)
+    api.root.addCorsPreflight(cors)
     api.root.addProxy({
       anyMethod: true,
       defaultIntegration: new apigw.LambdaIntegration(props.handler!),

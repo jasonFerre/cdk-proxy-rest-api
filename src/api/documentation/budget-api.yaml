@@ -7,7 +7,7 @@ tags:
   - name: budget
     description: Operations about budgets
 servers: #replace for your API Gateway URL
-  - url: 'https://x40c0heqxf.execute-api.us-east-1.amazonaws.com/dev'
+  - url: 'https://zyhd6cimpb.execute-api.us-east-1.amazonaws.com/dev'
 paths:
   /budget:
     get:
@@ -123,9 +123,8 @@ paths:
 components:
   securitySchemes:
     ApiToken:
-      type: apiKey
-      in: header
-      name: Authorization
+      type: http
+      scheme: bearer
   schemas:
     Budget:
       type: object
@@ -154,3 +153,6 @@ components:
             $ref: '#/components/schemas/Budget'
         lastEvaluatedKey:
           type: string
+
+security:
+  - ApiToken: []
