@@ -11,6 +11,7 @@ export abstract class RestProxyApi {
       removalPolicy: RemovalPolicy.DESTROY,
     })
 
+    // lambda authorizer for the rest api
     const lambdaAuth = NodeFunction.createDefaultFunction(scope, {
       functionName: 'budget-api-authorizer',
       description: 'Authorizer for the lambda rest api',

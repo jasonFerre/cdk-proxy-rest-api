@@ -9,11 +9,14 @@ export async function handler(
   const token = tokenValidation(event.authorizationToken.split(' ')[1])
 
   if (token === 'allow') {
+    console.log('returning the allow policy', event.authorizationToken)
     return generatePolicy('user', 'Allow', event.methodArn)
   } else if (token === 'deny') {
+    console.log('returning the deny policy', event.authorizationToken)
     return generatePolicy('user', 'Deny', event.methodArn)
   } else {
-    throw new Error('Unauthorized') // Returns a 401 Unauthorized response
+    console.log('returning unauthorized', event.authorizationToken)
+    throw new Error('Unauthorized')
   }
 }
 

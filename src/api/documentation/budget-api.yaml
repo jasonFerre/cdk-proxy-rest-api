@@ -2,10 +2,11 @@ openapi: '3.0.0'
 info:
   version: '1.0.0'
   title: 'Budget API'
+  description: 'API for managing budgets.'
 tags:
   - name: budget
     description: Operations about budgets
-servers: #TODO replace by API Gateway URL using CI-CD
+servers:
   - url: 'https://x40c0heqxf.execute-api.us-east-1.amazonaws.com/dev'
 paths:
   /budget:
@@ -16,12 +17,12 @@ paths:
       parameters:
         - name: PageSize
           in: query
-          required: false
+          description: 'Number of items per page'
           schema:
             type: integer
         - name: LastEvaluatedKey
           in: query
-          required: false
+          description: 'Last evaluated key for pagination'
           schema:
             type: string
       responses:
@@ -32,11 +33,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedBudgets'
         '400':
-          description: 'Invalid input'
+          description: 'Invalid input. Please check your request.'
+        '403':
+          description: 'Unauthorized. Authentication credentials were missing or incorrect.'
         '409':
-          description: 'Conditions failed'
+          description: 'Conditions failed. Request conflicts with the current state of the server.'
         '500':
-          description: 'Internal server error'
+          description: 'Internal server error. Please try again later.'
     post:
       tags:
         - 'budget'
@@ -49,17 +52,19 @@ paths:
               $ref: '#/components/schemas/Budget'
       responses:
         '201':
-          description: 'Successful operation'
+          description: 'Successful operation. New budget created.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Budget'
         '400':
-          description: 'Invalid input'
+          description: 'Invalid input. Please check your request.'
+        '403':
+          description: 'Unauthorized. Authentication credentials were missing or incorrect.'
         '409':
-          description: 'Conditions failed'
+          description: 'Conditions failed. Request conflicts with the current state of the server.'
         '500':
-          description: 'Internal server error'
+          description: 'Internal server error. Please try again later.'
   /budget/{id}:
     get:
       tags:
@@ -68,6 +73,7 @@ paths:
       parameters:
         - name: id
           in: path
+          description: 'ID of the budget to retrieve'
           required: true
           schema:
             type: string
@@ -81,9 +87,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/Budget'
         '400':
-          description: 'Invalid input'
+          description: 'Invalid input. Please check your request.'
+        '403':
+          description: 'Unauthorized. Authentication credentials were missing or incorrect.'
         '404':
-          description: 'Budget not found'
+          description: 'Budget not found. The requested budget ID does not exist.'
     put:
       tags:
         - 'budget'
@@ -91,6 +99,7 @@ paths:
       parameters:
         - name: id
           in: path
+          description: 'ID of the budget to update'
           required: true
           schema:
             type: string
@@ -102,39 +111,46 @@ paths:
               $ref: '#/components/schemas/Budget'
       responses:
         '200':
-          description: 'Successful operation'
+          description: 'Successful operation. Budget updated.'
         '400':
-          description: 'Invalid input'
+          description: 'Invalid input. Please check your request.'
+        '403':
+          description: 'Unauthorized. Authentication credentials were missing or incorrect.'
         '404':
-          description: 'Budget not found'
+          description: 'Budget not found. The requested budget ID does not exist.'
         '500':
-          description: 'Internal server error'
+          description: 'Internal server error. Please try again later.'
 components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      in: header
+      name: Authorization
   schemas:
     Budget:
-      type: 'object'
+      type: object
       properties:
-        Name:
-          type: 'string'
+        name:
+          type: string
           minLength: 1
           maxLength: 100
-        OwnerEmail:
-          type: 'string'
-          format: 'email'
-        EndDate:
-          type: 'string'
-          format: 'date-time'
-        AmountValue:
-          type: 'number'
+        ownerEmail:
+          type: string
+          format: email
+        endDate:
+          type: string
+          format: date-time
+        amountValue:
+          type: number
           minimum: 1
     PaginatedBudgets:
-      type: 'object'
+      type: object
       properties:
-        Count:
-          type: 'integer'
-        Items:
-          type: 'array'
+        count:
+          type: integer
+        items:
+          type: array
           items:
             $ref: '#/components/schemas/Budget'
-        LastEvaluatedKey:
-          type: 'string'
+        lastEvaluatedKey:
+          type: string

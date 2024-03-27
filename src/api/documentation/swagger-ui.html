@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Swagger UI</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.52.0/swagger-ui.css">
+</head>
+<body>
+    <div id="swagger-ui"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.52.0/swagger-ui-bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.52.0/swagger-ui-standalone-preset.js"></script>
+    <script>
+        window.onload = function() {
+            SwaggerUIBundle({
+                //url: "https://budget-api-resources-tst.s3.amazonaws.com/budget-api.yaml",
+                url: "https://budget-api-resources-tst.s3.us-east-1.amazonaws.com/budget-api.yaml?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJT%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMyJGMEQCIA%2BMHEfUjnqI9R5yncGYHXDF1qg42sRjeUMCuwNehr6nAiAeW5bePRoW5c91TF66FBAuQFGbn12PPbRNQHRTQAGoDiqEAwit%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAQaDDkyNDI0NTMyOTA3MCIMymCJG1scyv4pFxSjKtgCdfGK6ID9FMTPTbknDMvAjC4jLHX3jvGVlv864c7SPfxm%2Bvbpp4J44GWiGTkCTMljw9SvdEVyLU1%2FCzQi2zucMUaDkv0ZfxLiWUUnldaYjerOzj9xeoFX5Hu%2FrmSmmEiqxROdxU3AlMmU7uTZi2xm5kYkij9HBYrjpqJzAuZs0c4eyNYxALRG9VRLPSTES8H%2F7T8P8BzJaWmk9PKyWAbP96Tce2vlT1%2Bnwsk0R8o9rGrF6ETtIbMUPmcirQ74RkO%2Fdzk%2F1OwKEr99n3Pk50an8HoXvRhW7LwYR5fdBlU%2B1n%2FRjjwkbyYzt%2BbsjhBF3JdpbxF9gSdFkzXDU%2B6SuzBvlgovV%2BWenAFNMmxE7NKU9d1%2B5Yja7L8PHvVCyn5MJh5ZFjSq6LhN0xDwlH8gs34J9SCz7aOzIQMMF7UiXGCm9cBQbVtKW0hcdOb0EB52MtVqiZWYbKU9F4IwrMqLsAY6tAI9AUJ5cyBLGy8WxGmbfV9KBu5rS7eMexqnuqNXTpKuSeNNKFUcIe1zFDEyQWSyVZfTq7AfT0RHaJbluynVn8AMYXYXyBGs8idGK162aP1VZSn%2BP%2B2qFj6QuSOeOhji%2B6VzRJrkA6OLSdkMKKQ%2Bq1jCpF4P5uoFeRDV%2BtK4L%2BqMSBNxFyAVmaJZEdlUUipNRw0KOnwxc7yCP%2FvB62eSZyITZzQIfmKP3bYb2hnOYtZ%2Bpj51zBNqD0dysLMJogFwSN9nbMwimisgM2JYjPanpS1gQBJ5th29SxArob%2F8M8dlQOq%2FpJCI94%2FQ3nJ1tZ2g8r983Q9VXI6FNFfr2O8Qi9w7sD9hUA2KOcUQZ0eGFyKLeFdFmNgmxXrlANhf979qzUVH5%2F9l5IefEoOUFekNh3%2FTPjFpEQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240326T202252Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIA5OMKQQSXEFICX6P4%2F20240326%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=665849e2d3f593469d6bbebf6063a6d948a4dceb8b83ebb62f12c96178e2e738",
+                dom_id: '#swagger-ui',
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                layout: "BaseLayout"
+            });
+        }
+    </script>
+</body>
+</html>

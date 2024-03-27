@@ -3,7 +3,7 @@ export const Config: { [key: string]: unknown } = {
   projectName: 'api-cdk-devops',
   dev: {
     env: {
-      account: '924245329070',
+      account: '',
       region: 'us-east-1',
     },
     envName: 'dev',
