@@ -56,7 +56,6 @@ export abstract class RestProxyApi {
     api.root.addProxy({
       anyMethod: true,
       defaultIntegration: new apigw.LambdaIntegration(props.handler!),
-      defaultCorsPreflightOptions: cors,
     })
     return api
   }

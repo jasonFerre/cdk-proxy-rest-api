@@ -31,8 +31,7 @@ export class CustomAPIResponse {
     return Promise.resolve({
       statusCode: StatusCodes.CREATED,
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        ...this.headers,
         location: locationHeader,
       },
       isBase64Encoded: false,
@@ -58,10 +57,7 @@ export class CustomAPIResponse {
 
     return Promise.resolve({
       statusCode,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
+      headers: this.headers,
       isBase64Encoded: false,
       body: JSON.stringify({
         status: 'error',
