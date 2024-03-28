@@ -8,4 +8,11 @@ export const Config: { [key: string]: unknown } = {
     },
     envName: 'dev',
   },
+  uat: {
+    env: {
+      account: '',
+      region: 'us-east-1',
+    },
+    envName: 'uat',
+  },
 }

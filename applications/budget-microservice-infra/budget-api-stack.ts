@@ -40,6 +40,9 @@ export class BudgetApiStack extends Stack {
     const api = RestProxyApi.lambdaProxyAPI(this, {
       handler: proxyHandler,
       restApiName: 'budget-api',
+      deployOptions: {
+        stageName: props.AppSettings.envName,
+      },
     })
 
     SSM.createParameter(this, {
