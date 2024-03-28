@@ -20,11 +20,19 @@ jobs:
           node-version: 20
           cache: 'npm'
 
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: src/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('src/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install dependencies
         run: cd src && npm i
 
       - name: Unit Test
-        run: cd src && pwd && npm run unit-tests
+        run: cd src && npm run unit-tests-ci
 
   deploy:
     needs: tests
@@ -41,8 +49,27 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm run start-ci-cd
+      - name: Cache CDK node modules
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-cdk-node-
+
+      - name: Install CDK dependencies
+        run: npm run i
+
+      - name: Cache SRC node modules
+        uses: actions/cache@v3
+        with:
+          path: src/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('src/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install SRC dependencies
+        run: cd src && npm install --production
 
       - name: Set environment variables
         run: |
