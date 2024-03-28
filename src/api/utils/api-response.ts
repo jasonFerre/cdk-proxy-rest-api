@@ -10,15 +10,23 @@ export interface CustomError extends Error {
 
 @injectable()
 export class CustomAPIResponse {
-  private readonly headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
+  private generateHeaders(location?: string): { [header: string]: string | boolean } {
+    const headers: any = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    }
+
+    if (location) {
+      headers.location = location
+    }
+
+    return headers
   }
 
   async success(data: unknown): Promise<APIGatewayProxyResult> {
     return Promise.resolve({
       statusCode: StatusCodes.OK,
-      headers: this.headers,
+      headers: this.generateHeaders(),
       isBase64Encoded: false,
       body: JSON.stringify(data),
     })
@@ -30,10 +38,7 @@ export class CustomAPIResponse {
 
     return Promise.resolve({
       statusCode: StatusCodes.CREATED,
-      headers: {
-        ...this.headers,
-        location: locationHeader,
-      },
+      headers: this.generateHeaders(locationHeader),
       isBase64Encoded: false,
       body: JSON.stringify(data),
     })
@@ -57,7 +62,10 @@ export class CustomAPIResponse {
 
     return Promise.resolve({
       statusCode,
-      headers: this.headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
       isBase64Encoded: false,
       body: JSON.stringify({
         status: 'error',
