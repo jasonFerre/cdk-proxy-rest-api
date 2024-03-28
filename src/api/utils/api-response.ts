@@ -19,7 +19,8 @@ export class CustomAPIResponse {
     return Promise.resolve({
       statusCode: StatusCodes.OK,
       headers: {
-        ...this.headers,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
       isBase64Encoded: false,
       body: JSON.stringify(data),
