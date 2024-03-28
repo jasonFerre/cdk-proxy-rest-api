@@ -1,6 +1,6 @@
 // create a new cdk construct to define a Rest proxy API
 import { Construct } from 'constructs'
-import { RemovalPolicy, aws_apigateway as apigw, aws_logs as logs } from 'aws-cdk-lib'
+import { Duration, RemovalPolicy, aws_apigateway as apigw, aws_logs as logs } from 'aws-cdk-lib'
 import { NodeFunction } from './nodejs-function'
 import * as path from 'path'
 
@@ -24,6 +24,7 @@ export abstract class RestProxyApi {
     const authorizer = new apigw.TokenAuthorizer(scope, 'authorizer', {
       handler: lambdaAuth,
       identitySource: 'method.request.header.Authorization',
+      resultsCacheTtl: Duration.seconds(0),
     })
 
     const cors = {
