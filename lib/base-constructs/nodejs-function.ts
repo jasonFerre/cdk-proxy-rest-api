@@ -13,7 +13,7 @@ export abstract class NodeFunction {
         NODE_OPTIONS: '--enable-source-maps',
       },
       bundling: {
-        externalModules: ['aws-sdk', 'aws-lambda'],
+        externalModules: ['aws-sdk', 'aws-lambda', '@aws-sdk/client-dynamodb', '@aws-sdk/lib-dynamodb'],
         keepNames: true,
         minify: true,
         sourceMap: true,
