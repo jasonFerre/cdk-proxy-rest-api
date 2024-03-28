@@ -37,12 +37,10 @@ export class BudgetApiStack extends Stack {
 
     budgetTable.grantReadWriteData(proxyHandler)
 
-    const api = RestProxyApi.lambdaProxyAPI(this, {
+    const api = RestProxyApi.proxyAPI(this, {
       handler: proxyHandler,
       restApiName: 'budget-api',
-      deployOptions: {
-        stageName: props.AppSettings.envName,
-      },
+      stageName: props.AppSettings.envName,
     })
 
     SSM.createParameter(this, {

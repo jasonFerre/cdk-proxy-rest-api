@@ -1,11 +1,16 @@
 // create a new cdk construct to define a Rest proxy API
 import { Construct } from 'constructs'
-import { Duration, RemovalPolicy, aws_apigateway as apigw, aws_logs as logs } from 'aws-cdk-lib'
+import { Duration, RemovalPolicy, aws_apigateway as apigw, aws_logs as logs, aws_lambda as lambda } from 'aws-cdk-lib'
 import { NodeFunction } from './nodejs-function'
 import * as path from 'path'
 
+export interface RestProxyApiProps extends apigw.RestApiProps {
+  stageName: string
+  handler: lambda.IFunction
+}
+
 export abstract class RestProxyApi {
-  static lambdaProxyAPI(scope: Construct, props: Partial<apigw.LambdaRestApiProps>) {
+  static proxyAPI(scope: Construct, props: Partial<RestProxyApiProps>) {
     const apiLogs = new logs.LogGroup(scope, props.restApiName!.concat('-logs'), {
       logGroupName: props.restApiName!.concat('-logs'),
       removalPolicy: RemovalPolicy.DESTROY,
@@ -13,8 +18,8 @@ export abstract class RestProxyApi {
 
     // lambda authorizer for the rest api
     const lambdaAuth = NodeFunction.createDefaultFunction(scope, {
-      functionName: 'budget-api-authorizer',
-      description: 'Authorizer for the lambda rest api',
+      functionName: props.restApiName!.concat('-authorizer'),
+      description: 'Custom Token Authorizer',
       entry: path.resolve(__dirname, '../../src/api/auth/authorizer.ts'),
       environment: {
         ENVIRONMENT: 'props.AppSettings.envName',
@@ -43,7 +48,6 @@ export abstract class RestProxyApi {
         authorizer,
       },
       deployOptions: {
-        stageName: 'dev', // create stage based on the env variables
         loggingLevel: apigw.MethodLoggingLevel.INFO,
         dataTraceEnabled: true,
         accessLogDestination: new apigw.LogGroupLogDestination(apiLogs),
