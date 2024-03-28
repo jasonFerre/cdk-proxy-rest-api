@@ -129,29 +129,29 @@ components:
     Budget:
       type: object
       properties:
-        name:
+        Name:
           type: string
           minLength: 1
           maxLength: 100
-        ownerEmail:
+        OwnerEmail:
           type: string
           format: email
-        endDate:
+        EndDate:
           type: string
           format: date-time
-        amountValue:
+        AmountValue:
           type: number
           minimum: 1
     PaginatedBudgets:
       type: object
       properties:
-        count:
+        Count:
           type: integer
-        items:
+        Items:
           type: array
           items:
             $ref: '#/components/schemas/Budget'
-        lastEvaluatedKey:
+        LastEvaluatedKey:
           type: string
 
 security:
