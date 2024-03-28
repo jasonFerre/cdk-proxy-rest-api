@@ -48,6 +48,7 @@ export abstract class RestProxyApi {
         authorizer,
       },
       deployOptions: {
+        stageName: props.stageName,
         loggingLevel: apigw.MethodLoggingLevel.INFO,
         dataTraceEnabled: true,
         accessLogDestination: new apigw.LogGroupLogDestination(apiLogs),

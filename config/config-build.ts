@@ -15,7 +15,7 @@ export type ConfigBuild = {
   envVariables: { [key: string]: string }
 }
 
-const environmentName = process.env.ENVIRONMENTNAME ?? 'uat'
+const environmentName = process.env.ENVIRONMENTNAME ?? 'dev'
 
 console.log(`environmentName: ${environmentName}`)
 export const buildEnvironment = () => {
