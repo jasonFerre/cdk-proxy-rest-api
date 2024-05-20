@@ -11,6 +11,9 @@ export abstract class NodeFunction {
       runtime: lambda.Runtime.NODEJS_20_X,
       environment: {
         NODE_OPTIONS: '--enable-source-maps',
+        AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
+        // https://theburningmonk.com/2019/02/lambda-optimization-tip-enable-http-keep-alive/
+        // https://medium.com/ama-tech-blog/distributed-tracing-using-aws-lambda-powertools-for-typescript-3572d70fccd4
       },
       bundling: {
         externalModules: ['aws-sdk', 'aws-lambda', '@aws-sdk/client-dynamodb', '@aws-sdk/lib-dynamodb'],
